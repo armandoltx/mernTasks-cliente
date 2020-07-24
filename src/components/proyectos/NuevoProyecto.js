@@ -1,6 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
+import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const NuevoProyecto = () => {
+
+  //Obtener el state del Formulario
+  // primero definimos el context asi podemos consumir el state formulario sin necesidad de pasarlo a lo largo del arbol de componentes. Hay q pasar el context como parametro para acceder a el.
+  const proyectosContext = useContext(proyectoContext);
+  // ahora accedemos al state y a "formulario"
+  const { formulario } = proyectosContext;
+
   // state para Proyecto
   const [proyecto, guardarProyecto] = useState({
     nombre: ''
@@ -33,25 +41,29 @@ const NuevoProyecto = () => {
         className="btn btn-block btn-primario"
       >Nuevo Proyecto</button>
 
-      <form
-        className="formulario-nuevo-proyecto"
-        onSubmit={onSubmitProyecto}
-      >
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Nombre Proyecto"
-          name="nombre"
-          value={nombre}
-          onChange={onChangeProyecto}
-          />
+      {formulario ?
+        (
+          <form
+            className="formulario-nuevo-proyecto"
+            onSubmit={onSubmitProyecto}
+          >
+            <input
+              type="text"
+              className="input-text"
+              placeholder="Nombre Proyecto"
+              name="nombre"
+              value={nombre}
+              onChange={onChangeProyecto}
+              />
 
-        <input
-          type="submit"
-          className="btn btn-primario btn-block"
-          value="Agregar Proyecto"
-        />
-      </form>
+            <input
+              type="submit"
+              className="btn btn-primario btn-block"
+              value="Agregar Proyecto"
+            />
+          </form>
+        ) : null
+      }
     </Fragment>
 
   );
