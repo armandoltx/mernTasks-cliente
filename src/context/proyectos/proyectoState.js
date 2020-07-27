@@ -5,6 +5,7 @@ import React, { useReducer } from 'react';
 
 import proyectoContext from './proyectoContext'; // importamos el context
 import proyectoReducer from './proyectoReducer';
+import { FORMULARIO_PROYECTO } from '../../types';
 
 const ProyectoState = props => {
   // este es el state inicial de la administracion del proyecto (creacion de proyecto, eliminacion ...)
@@ -18,12 +19,21 @@ const ProyectoState = props => {
   const [state, dispatch] = useReducer(proyectoReducer, initialState);
 
   // Serie de funciones para el CRUD
+  const mostrarFormulario = () => {
+    // aqui la importanci de dispatch porque le vamos a evaluar el type y va a estar atado al switch q cambia el state.
+    // el state se cambia en el reducer, aqui solo se escriben las funciones q mandan a llamar al reducer.
+    // cuando se ejecuta esta funcion se ejecuta el type FORMULARIO_PROYECTO.
+    dispatch({
+      type: FORMULARIO_PROYECTO
+    })
+  }
 
   // desde proyectoContext.Provider nacen los datos para q le pasemos todos los datos a los componentes hijos usamos props.children
   return (
     <proyectoContext.Provider
       value={{
         formulario: state.formulario,
+        mostrarFormulario,
       }}
     >
       {props.children}

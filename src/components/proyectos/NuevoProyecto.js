@@ -6,8 +6,8 @@ const NuevoProyecto = () => {
   //Obtener el state del Formulario
   // primero definimos el context asi podemos consumir el state formulario sin necesidad de pasarlo a lo largo del arbol de componentes. Hay q pasar el context como parametro para acceder a el.
   const proyectosContext = useContext(proyectoContext);
-  // ahora accedemos al state y a "formulario"
-  const { formulario } = proyectosContext;
+  // ahora accedemos al state y a "formulario" y a todo lo q este en el context
+  const { formulario, mostrarFormulario } = proyectosContext;
 
   // state para Proyecto
   const [proyecto, guardarProyecto] = useState({
@@ -33,12 +33,18 @@ const NuevoProyecto = () => {
     //Reiniciar el form
   }
 
+  // Mostrar el Formulario
+  const onClickFormulario = () => {
+    mostrarFormulario()
+  }
+
 
   return (
     <Fragment>
       <button
         type="button"
         className="btn btn-block btn-primario"
+        onClick={ onClickFormulario }
       >Nuevo Proyecto</button>
 
       {formulario ?
