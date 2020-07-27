@@ -5,17 +5,24 @@ import React, { useReducer } from 'react';
 
 import proyectoContext from './proyectoContext'; // importamos el context
 import proyectoReducer from './proyectoReducer';
-import { FORMULARIO_PROYECTO } from '../../types';
+import {
+  FORMULARIO_PROYECTO,
+  OBTENER_PROYECTOS
+} from '../../types';
 
 const ProyectoState = props => {
+
+  const proyectos = [ // lo normal es q vengan de una base de datos
+    { id: 1, nombre: 'Tienda Virtual' },
+    { id: 2, nombre: 'Intranet' },
+    { id: 3, nombre: 'Sitio Web' },
+    { id: 4, nombre: 'MERN' },
+  ]
+
+
   // este es el state inicial de la administracion del proyecto (creacion de proyecto, eliminacion ...)
   const initialState = { // definimos el state inicial, q siempre sera un objeto
-    proyectos: [
-      { id: 1, nombre: 'Tienda Virtual' },
-      { id: 2, nombre: 'Intranet' },
-      { id: 3, nombre: 'Sitio Web' },
-      { id: 4, nombre: 'MERN' },
-    ],
+    proyectos: [],
     formulario: false
   }
 
@@ -26,11 +33,20 @@ const ProyectoState = props => {
 
   // Serie de funciones para el CRUD
   const mostrarFormulario = () => {
-    // aqui la importanci de dispatch porque le vamos a evaluar el type y va a estar atado al switch q cambia el state.
+    // aqui la importancia de dispatch porque le vamos a evaluar el type y va a estar atado al switch q cambia el state.
     // el state se cambia en el reducer, aqui solo se escriben las funciones q mandan a llamar al reducer.
     // cuando se ejecuta esta funcion se ejecuta el type FORMULARIO_PROYECTO.
     dispatch({
       type: FORMULARIO_PROYECTO
+    })
+  }
+
+  // Obtener los proyectos
+  // lo q tome la funcion como parametro siempre sera el payload
+  const obtenerProyectos = () => {
+    dispatch({
+      type: OBTENER_PROYECTOS,
+      payload: proyectos
     })
   }
 
@@ -41,6 +57,7 @@ const ProyectoState = props => {
         proyectos: state.proyectos,
         formulario: state.formulario,
         mostrarFormulario,
+        obtenerProyectos,
       }}
     >
       {props.children}

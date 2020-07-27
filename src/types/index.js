@@ -2,4 +2,5 @@
 
 // aqui se definen una serie de acciones que usualmente describen lo que va pasando en la app
 
-export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO';
+export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO'
+export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS'
