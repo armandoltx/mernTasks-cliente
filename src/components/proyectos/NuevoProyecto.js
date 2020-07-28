@@ -7,7 +7,7 @@ const NuevoProyecto = () => {
   // primero definimos el context asi podemos consumir el state formulario sin necesidad de pasarlo a lo largo del arbol de componentes. Hay q pasar el context como parametro para acceder a el.
   const proyectosContext = useContext(proyectoContext);
   // ahora accedemos al state y a "formulario" y a todo lo q este en el context
-  const { formulario, mostrarFormulario } = proyectosContext;
+  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
 
   // state para Proyecto
   const [proyecto, guardarProyecto] = useState({
@@ -29,8 +29,14 @@ const NuevoProyecto = () => {
   const onSubmitProyecto = (e) => {
     e.preventDefault();
     // Validar el proyecto
+    if(nombre === '') {return;}
     //Agregarlo al state
+    agregarProyecto(proyecto);
     //Reiniciar el form
+    //para que cuando se vuelva a usar este vacio
+    guardarProyecto({
+      nombre: ''
+    })
   }
 
   // Mostrar el Formulario

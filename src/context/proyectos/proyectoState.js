@@ -3,11 +3,15 @@
 
 import React, { useReducer } from 'react';
 
+import uuid, { v4 as uuidv4 } from 'uuid';
+
+
 import proyectoContext from './proyectoContext'; // importamos el context
 import proyectoReducer from './proyectoReducer';
 import {
   FORMULARIO_PROYECTO,
-  OBTENER_PROYECTOS
+  OBTENER_PROYECTOS,
+  AGREGAR_PROYECTO,
 } from '../../types';
 
 const ProyectoState = props => {
@@ -32,6 +36,8 @@ const ProyectoState = props => {
   const [state, dispatch] = useReducer(proyectoReducer, initialState);
 
   // Serie de funciones para el CRUD
+  //============ CRUD ==============
+  //
   const mostrarFormulario = () => {
     // aqui la importancia de dispatch porque le vamos a evaluar el type y va a estar atado al switch q cambia el state.
     // el state se cambia en el reducer, aqui solo se escriben las funciones q mandan a llamar al reducer.
@@ -42,13 +48,28 @@ const ProyectoState = props => {
   }
 
   // Obtener los proyectos
-  // lo q tome la funcion como parametro siempre sera el payload
+  // lo q tome la funcion como parametro siempre sera el payload. El payload es lo q cambia el state.
   const obtenerProyectos = () => {
     dispatch({
       type: OBTENER_PROYECTOS,
       payload: proyectos
     })
   }
+
+  //Agregar Nuevo Proyecto
+  const agregarProyecto = proyecto => {
+    //pasamos el proyecto como parametro, le agregamos un id y lo pasamos como dispatch para cambiar el state
+    // 1. agregamos el id
+    proyecto.id = uuidv4();
+
+    // 2. Insertamoes el proyecto en el state
+    dispatch({
+      type: AGREGAR_PROYECTO,
+      payload: proyecto
+    })
+  }
+
+  //=======   END CRUD ========
 
   // desde proyectoContext.Provider nacen los datos para q le pasemos todos los datos a los componentes hijos usamos props.children
   return (
@@ -58,6 +79,7 @@ const ProyectoState = props => {
         formulario: state.formulario,
         mostrarFormulario,
         obtenerProyectos,
+        agregarProyecto,
       }}
     >
       {props.children}
