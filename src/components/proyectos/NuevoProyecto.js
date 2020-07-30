@@ -7,7 +7,7 @@ const NuevoProyecto = () => {
   // primero definimos el context asi podemos consumir el state formulario sin necesidad de pasarlo a lo largo del arbol de componentes. Hay q pasar el context como parametro para acceder a el.
   const proyectosContext = useContext(proyectoContext);
   // ahora accedemos al state y a "formulario" y a todo lo q este en el context
-  const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
+  const { formulario, errorformulario, mostrarFormulario, agregarProyecto, mostrarError } = proyectosContext;
 
   // state para Proyecto
   const [proyecto, guardarProyecto] = useState({
@@ -29,7 +29,15 @@ const NuevoProyecto = () => {
   const onSubmitProyecto = (e) => {
     e.preventDefault();
     // Validar el proyecto
-    if(nombre === '') {return;}
+    if(nombre === '') {
+      mostrarError();
+      // se ejecuta la funcion mostrarError
+      // va al state, identifica el type VALIDAR_FORMULARIO,
+      // va al reducer identifica el case VALIDAR_FORMULARIO y cambia el error a true
+      // vuelve a esta pagina y en el ternario en el formulario muestra el mensaje
+      // luego lo agregamos a AGREGAR_PROYECTO en el reducer como false para esconderlo
+      return;
+    }
     //Agregarlo al state
     agregarProyecto(proyecto);
     //Reiniciar el form
@@ -74,8 +82,8 @@ const NuevoProyecto = () => {
               value="Agregar Proyecto"
             />
           </form>
-        ) : null
-      }
+        ) : null }
+        { errorformulario ? <p className="mensaje error">El Nombre del Proyecto es Obligatorio.</p> : null }
     </Fragment>
 
   );

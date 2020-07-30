@@ -3,6 +3,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
+  VALIDAR_FORMULARIO,
 } from '../../types';
 
 
@@ -25,7 +26,13 @@ export default (state, action) => {
         proyectos: [...state.proyectos, action.payload],
         // como proyectos es un array hacemos copia del array de los proyectos y le agregamos el nuevo proyecto
         // utilizando el action payload.
-        formulario: false // para guardar el formulario y no poder agregar mas.
+        formulario: false, // para guardar el formulario y no poder agregar mas.
+        errorformulario: false // para "resetear el valor"
+      }
+    case VALIDAR_FORMULARIO:
+      return {
+        ...state,
+        errorformulario: true,
       }
     default:
       return state;

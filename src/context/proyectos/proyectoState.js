@@ -12,6 +12,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
+  VALIDAR_FORMULARIO,
 } from '../../types';
 
 const ProyectoState = props => {
@@ -27,7 +28,8 @@ const ProyectoState = props => {
   // este es el state inicial de la administracion del proyecto (creacion de proyecto, eliminacion ...)
   const initialState = { // definimos el state inicial, q siempre sera un objeto
     proyectos: [],
-    formulario: false
+    formulario: false,
+    errorformulario: false,
   }
 
   // Dispatch para ejecutar las acciones
@@ -69,6 +71,15 @@ const ProyectoState = props => {
     })
   }
 
+  // Validar Formulario por errores
+  const mostrarError = () => {
+    // no le pasamos ningun parametro, pq cuando se llame mostrara un error, pasara de ser false a true
+    dispatch({
+      type: VALIDAR_FORMULARIO,
+    })
+
+  }
+
   //=======   END CRUD ========
 
   // desde proyectoContext.Provider nacen los datos para q le pasemos todos los datos a los componentes hijos usamos props.children
@@ -77,9 +88,11 @@ const ProyectoState = props => {
       value={{
         proyectos: state.proyectos,
         formulario: state.formulario,
+        errorformulario: state.errorformulario,
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
+        mostrarError,
       }}
     >
       {props.children}
