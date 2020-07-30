@@ -4,6 +4,7 @@ import {
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
+  PROYECTO_ACTUAL,
 } from '../../types';
 
 
@@ -33,6 +34,12 @@ export default (state, action) => {
       return {
         ...state,
         errorformulario: true,
+      }
+    case PROYECTO_ACTUAL:
+      return {
+        ...state,
+        // el proyecto a ensenar es el proyecto donde demos click en el sidebar, como tenemos los proyectos por id y podemos acceder a ellos desde el sidebar utilizando un filter.
+        proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
       }
     default:
       return state;
