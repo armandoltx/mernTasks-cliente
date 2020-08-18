@@ -53,6 +53,7 @@ const ProyectoState = props => {
 
   // Obtener los proyectos
   // lo q tome la funcion como parametro siempre sera el payload. El payload es lo q cambia el state.
+  // como los proyectos vienen de una BD no los pasamos como parametros los proyectos.
   const obtenerProyectos = () => {
     dispatch({
       type: OBTENER_PROYECTOS,
