@@ -5,6 +5,7 @@ import {
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL,
+  ELIMINAR_PROYECTO,
 } from '../../types';
 
 
@@ -41,6 +42,14 @@ export default (state, action) => {
         // el proyecto a ensenar es el proyecto donde demos click en el sidebar, como tenemos los proyectos por id y podemos acceder a ellos desde el sidebar utilizando un filter.
         proyecto: state.proyectos.filter(proyecto => proyecto.id === action.payload)
       }
+    case ELIMINAR_PROYECTO:
+      return {
+        ...state,
+        proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload),
+        // al eliminar lo que queremos es traer todos los proyesctos excepto el que tiene esa id, por eso !==
+        proyecto: null // para cuando se borre un proyecto no se ensene el form de tareas ni el listado de tareas
+      }
+
     default:
       return state;
   }

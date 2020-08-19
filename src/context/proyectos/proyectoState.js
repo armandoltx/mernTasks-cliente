@@ -14,6 +14,7 @@ import {
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL,
+  ELIMINAR_PROYECTO,
 } from '../../types';
 
 const ProyectoState = props => {
@@ -92,6 +93,14 @@ const ProyectoState = props => {
 
   }
 
+  // Eliminar el Proyecto
+  const eliminarProyecto = proyectoId => {
+    dispatch({
+      type: ELIMINAR_PROYECTO,
+      payload: proyectoId
+    })
+  }
+
   //=======   END CRUD ========
 
   // desde proyectoContext.Provider nacen los datos para q le pasemos todos los datos a los componentes hijos usamos props.children
@@ -107,6 +116,7 @@ const ProyectoState = props => {
         agregarProyecto,
         mostrarError,
         proyectoActual,
+        eliminarProyecto,
       }}
     >
       {props.children}
