@@ -7,18 +7,21 @@ import Proyectos from './components/proyectos/Proyectos';
 
 // Se consume el context en app. todo lo q este dentro de este provider podran usar los states
 import ProyectoState from './context/proyectos/proyectoState';
+import TareaState from './context/tareas/tareaState';
 
 function App() {
   return (
     <ProyectoState>
-      <Router>
-        <Switch>
-          {/* todo lo se que ponga aqui van a ser las diferentes pags lo de fuera va a ser comun en todas las pags */}
-          <Route exact path="/" component={Login} />
-          <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
-          <Route exact path="/proyectos" component={Proyectos} />
-        </Switch>
-      </Router>
+      <TareaState>
+        <Router>
+          <Switch>
+            {/* todo lo se que ponga aqui van a ser las diferentes pags lo de fuera va a ser comun en todas las pags */}
+            <Route exact path="/" component={Login} />
+            <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
+            <Route exact path="/proyectos" component={Proyectos} />
+          </Switch>
+        </Router>
+      </TareaState>
     </ProyectoState>
   );
 }

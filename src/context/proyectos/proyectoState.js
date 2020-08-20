@@ -1,4 +1,4 @@
-// se definen los != state y las funciones funciones con dispatch hacia los types
+// se definen los != state y las funciones funciones con dispatch hacia los types (acciones)
 
 
 import React, { useReducer } from 'react';
