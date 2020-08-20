@@ -5,6 +5,21 @@ import TareaReducer from './tareaReducer';
 const TareaState = props => {
   // siempre el state inicial va a ser un objeto
   const initialState = {
+    tareas: [
+      { nombre: 'Elegir Plataforma', estado: true, proyectoId: 1 },
+      { nombre: 'Elegir Colores', estado: false, proyectoId: 2 },
+      { nombre: 'Elegir Plataformas de Pago', estado: false, proyectoId: 3 },
+      { nombre: 'Elegir Hosting', estado: true, proyectoId: 4 },
+      { nombre: 'Elegir Plataforma', estado: true, proyectoId: 1 },
+      { nombre: 'Elegir Colores', estado: false, proyectoId: 2 },
+      { nombre: 'Elegir Plataformas de Pago', estado: false, proyectoId: 3 },
+      { nombre: 'Elegir Plataforma', estado: true, proyectoId: 4 },
+      { nombre: 'Elegir Colores', estado: false, proyectoId: 1 },
+      { nombre: 'Elegir Plataformas de Pago', estado: false, proyectoId: 2 },
+      { nombre: 'Elegir Plataforma', estado: true, proyectoId: 3 },
+      { nombre: 'Elegir Colores', estado: false, proyectoId: 4 },
+      { nombre: 'Elegir Plataformas de Pago', estado: false, proyectoId: 3 },
+    ],
   }
 
   // Crear Dispatch y State
@@ -15,7 +30,11 @@ const TareaState = props => {
 
 
   return(
-    <TareaContext.Provider>
+    <TareaContext.Provider
+      value={{
+        tareas: state.tareas
+      }}
+    >
       {props.children}
     </TareaContext.Provider>
   )
