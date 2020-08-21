@@ -1,7 +1,13 @@
-
+import { TAREAS_PROYECTO } from '../../types/index';
 
 export default(state, action) => {
   switch(action.type) {
+    case TAREAS_PROYECTO:
+      return {
+        ...state,
+        tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload)
+        // el payload viene de la funcion creada con dispatch en tareaState ==> obtenerTareas
+      }
 
     default:
       return state;
