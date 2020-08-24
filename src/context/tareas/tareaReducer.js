@@ -1,4 +1,7 @@
-import { TAREAS_PROYECTO } from '../../types/index';
+import {
+  TAREAS_PROYECTO,
+  AGREGAR_TAREA,
+} from '../../types/index';
 
 export default(state, action) => {
   switch(action.type) {
@@ -7,6 +10,12 @@ export default(state, action) => {
         ...state,
         tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload)
         // el payload viene de la funcion creada con dispatch en tareaState ==> obtenerTareas
+      }
+
+    case AGREGAR_TAREA:
+      return {
+        ...state,
+        tareas: [...state.tareas, action.payload] // creamos un arreglo con las tareas q tenemos mas la nueva tarea.
       }
 
     default:

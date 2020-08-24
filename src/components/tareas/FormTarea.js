@@ -15,24 +15,40 @@ const FormTarea = () => {
   // extraemos la posicion cero
   const [proyectoActual] = proyecto
 
+  const onSubmit = e => {
+    e.preventDefault();
+
+    // validar
+
+    // pasar la validacion
+
+    // agregar la nuvea tarea al state de tareas
+
+    // reiniciar el form
+  }
+
   return (
     <div className="formulario">
-      <div className="contenedor-input">
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Nombre Tarea"
-          name="nombre"
-        />
-      </div>
+      <form
+        onSubmit={onSubmit}
+      >
+        <div className="contenedor-input">
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Nombre Tarea"
+            name="nombre"
+          />
+        </div>
 
-      <div className="formulario">
-        <input
-          type="submit"
-          className="btn btn-primario btn-submit btn-block"
-          value="Agregar Tarea"
-        />
-      </div>
+        <div className="contenedor-input">
+          <input
+            type="submit"
+            className="btn btn-primario btn-submit btn-block"
+            value="Agregar Tarea"
+          />
+        </div>
+      </form>
     </div>
   );
 };
