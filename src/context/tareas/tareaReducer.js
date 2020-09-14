@@ -17,7 +17,8 @@ export default(state, action) => {
     case AGREGAR_TAREA:
       return {
         ...state,
-        tareas: [...state.tareas, action.payload], // creamos un arreglo con las tareas q tenemos mas la nueva tarea.
+        tareas: [action.payload, ...state.tareas], // creamos un arreglo con las tareas q tenemos mas la nueva tarea.
+        // 1 creamos la tarea y luego renderizamos las demas, para que se vea la ultima tarea al ppo.
         errortarea: false
       }
 
