@@ -7,7 +7,8 @@ import {
   AGREGAR_TAREA,
   VALIDAR_TAREA,
   ELIMINAR_TAREA,
-  ESTADO_TAREA
+  ESTADO_TAREA,
+  TAREA_ACTUAL
 } from '../../types/index';
 
 const TareaState = props => {
@@ -30,6 +31,7 @@ const TareaState = props => {
     ],
     tareasproyecto: null, // al inicio no va a haber ninguna tarea, el usuario tiene q seleccionar alguna tarea
     errortarea: false,
+    tareaseleccionada: null, // definimos este state pq aqui vamos a colocar la tarea seleccionada para editar.
   }
 
   // Crear Dispatch y State
@@ -79,6 +81,14 @@ const TareaState = props => {
     })
   }
 
+  // Extrae una tarea para Editar.
+  const guardarTareaActual = tarea => {
+    dispatch({
+      type: TAREA_ACTUAL,
+      payload: tarea
+    })
+  }
+
 
   return(
     <tareaContext.Provider
@@ -86,11 +96,13 @@ const TareaState = props => {
         tareas: state.tareas,
         tareasproyecto: state.tareasproyecto,
         errortarea: state.errortarea,
+        tareaseleccionada: state.tareaseleccionada,
         obtenerTareas,
         agregarTarea,
         validarTarea,
         eliminarTarea,
         cambiarEstadoTarea,
+        guardarTareaActual,
       }}
     >
       {props.children}
