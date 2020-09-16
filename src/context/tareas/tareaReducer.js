@@ -5,6 +5,7 @@ import {
   ELIMINAR_TAREA,
   ESTADO_TAREA,
   TAREA_ACTUAL,
+  ACTUALIZAR_TAREA,
 } from '../../types/index';
 
 export default(state, action) => {
@@ -37,10 +38,11 @@ export default(state, action) => {
         tareas: state.tareas.filter(tarea => tarea.id !== action.payload)
       }
 
-    case ESTADO_TAREA:
+    case ESTADO_TAREA: // como los dos case tienen el mismo codigo se juntan.
+    case ACTUALIZAR_TAREA:
       return {
         ...state,
-        tareas: state.tareasproyecto.map(tarea => tarea.id === action.payload.id ? action.payload : tarea)
+        tareas: state.tareas.map(tarea => tarea.id === action.payload.id ? action.payload : tarea)
       }
 
     case TAREA_ACTUAL:
