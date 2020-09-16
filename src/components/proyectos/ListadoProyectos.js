@@ -14,6 +14,7 @@ const ListadoProyectos = () => {
   // el useEffect nunca puede estar despues de un return
   useEffect(() => {
     obtenerProyectos();
+    // eslint-disable-next
   },[]);
 
   // Revisar si proyectos tiene contenido
