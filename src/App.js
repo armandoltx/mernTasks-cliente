@@ -11,6 +11,8 @@ import TareaState from './context/tareas/tareaState';
 import AlertaState from './context/alertas/alertaState';
 import AuthState from './context/autenticacion/authState';
 
+console.log("REACT_APP_BACKEND_URL ", process.env.REACT_APP_BACKEND_URL);
+
 function App() {
   return (
     <ProyectoState>

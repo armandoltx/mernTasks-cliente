@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import alertaContext from './alertaContext';
+import AlertaContext from './alertaContext';
 import alertaReducer from './alertaReducer';
 
 import { MOSTRAR_ALERTA, OCULTAR_ALERTA } from '../../types';
@@ -35,7 +35,7 @@ const AlertaState = props => {
   }
 
   return (
-    <alertaContext.Provider
+    <AlertaContext.Provider
       value={{
         alerta: state.alerta,
         mostrarAlerta
@@ -43,7 +43,7 @@ const AlertaState = props => {
       }}
     >
       {props.children}
-    </alertaContext.Provider>
+    </AlertaContext.Provider>
   )
 }
 
