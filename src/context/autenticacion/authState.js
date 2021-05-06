@@ -32,17 +32,22 @@ const AuthState = props => {
   const registrarUsuario = async datos => {
     try {
       const respuesta = await clienteAxios.post('/api/usuarios', datos);
-      console.log("respuesta ", respuesta);
+      console.log("respuesta ", respuesta);// se puede ver q print el token en data
 
       dispatch({
         type: REGISTRO_EXITOSO,
-        payload: respuesta.datos
+        payload: respuesta.data
       })
     } catch (error) { // puede pasar q queramos registrar a un usuario q ya esta registrado.
-      console.log(error);
+      console.log(error.response.data.msg);// asi se accede a los errores de axios
+      const alerta = {
+        msg: error.response.data.msg,
+        categoria: 'alerta-error'
+      }
 
       dispatch({
-        type: REGISTRO_ERROR
+        type: REGISTRO_ERROR,
+        payload: alerta
       })
     }
   }
